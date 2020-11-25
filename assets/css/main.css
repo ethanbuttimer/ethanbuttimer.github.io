@@ -2393,6 +2393,14 @@ p.portfolio_item_main_text {
 			  width: 33.33%;
 			}
 
+			.image.column.two_of_em {
+				width: 50%;
+			}
+
+			/*.image.column.three_of_em {
+				width: 33.33%;
+			}*/
+
 			.image.row {
 				margin-top: 3em;
 				margin-bottom: 3em;
@@ -2410,12 +2418,11 @@ p.portfolio_item_main_text {
 					margin: 0 0 2em 0;
 				}
 
-				.image.column {
+				.image.column, .image.column.two_of_em {
 					display: block;
 					margin: 0 0 3em 0;
 					width: 100%;
   				}
-
 			}
 
 /* Table */
