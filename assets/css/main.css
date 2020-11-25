@@ -2450,6 +2450,7 @@ p.portfolio_item_main_text {
 			  margin-top: 20px;
 			  vertical-align: middle;
 			  width: 100%;
+			  max-width: 100%;
 			}
 
 			/* Responsive layout - makes a two column-layout instead of three columns */
