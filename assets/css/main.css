@@ -2388,7 +2388,7 @@ p.portfolio_item_main_text {
 			}
 
 			/* Three image containers (use 25% for four, and 50% for two, etc) */
-			.image.column {
+			/*.image.column {
 			  float: left;
 			  width: 33.33%;
 			}
@@ -2397,20 +2397,20 @@ p.portfolio_item_main_text {
 				width: 50%;
 			}
 
-			/*.image.column.three_of_em {
+			.image.column.three_of_em {
 				width: 33.33%;
-			}*/
+			}
 
 			.image.row {
 				margin-top: 3em;
 				margin-bottom: 3em;
 			}
 			/* Clear floats after image containers */
-			.image.row::after {
+			/*.image.row::after {
 			  content: "";
 			  clear: both;
 			  display: table;
-			}
+			}*/
 
 			@media screen and (max-width: 736px) {
 
@@ -2418,11 +2418,54 @@ p.portfolio_item_main_text {
 					margin: 0 0 2em 0;
 				}
 
-				.image.column, .image.column.two_of_em {
+				/*.image.column, .image.column.two_of_em {
 					display: block;
 					margin: 0 0 3em 0;
 					width: 100%;
-  				}
+  				}*/
+			}
+
+			/*FROM W3SCHOOLS*/
+
+			.image.row {
+			  display: flex;
+			  flex-wrap: wrap;
+			  padding: 10px;
+			  margin-left: -20px;
+			}
+
+			/* Create three equal columns that sits next to each other */
+			.image.column {
+			  flex: 33.33%;
+			  max-width: 33.33%;
+			  padding: 10px;
+			}
+
+			.image.column.halves {
+			  flex: 50%;
+			  max-width: 50%;
+			}
+
+			.image.column img {
+			  margin-top: 20px;
+			  vertical-align: middle;
+			  width: 100%;
+			}
+
+			/* Responsive layout - makes a two column-layout instead of three columns */
+			/*@media screen and (max-width: 900px) {
+			  .image.column {
+			    flex: 50%;
+			    max-width: 50%;
+			  }
+			}*/
+
+			/* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+			@media screen and (max-width: 800px) {
+			  .image.column, .image.column.halves {
+			    flex: 100%;
+			    max-width: 100%;
+			  }
 			}
 
 /* Table */
