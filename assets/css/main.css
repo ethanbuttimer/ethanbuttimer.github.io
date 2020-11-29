@@ -2812,11 +2812,6 @@ p.portfolio_item_main_text {
   				-webkit-filter: blur(3px);
 			}
 
-			.page_nav {
-				background-color: blue;
-				text-align:center;
-			}
-
 			.page_prev {
 			    float: left;
 			}
