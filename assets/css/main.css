@@ -2804,6 +2804,14 @@ p.portfolio_item_main_text {
 						margin-bottom: 0;
 					}
 
+			img.central {
+				object-fit: cover;
+  				width:300px;
+  				height:300px;
+				filter: blur(3px);
+  				-webkit-filter: blur(3px);
+			}
+
 			.tiles article.style1 > .image:before {
 				background-color: #7ecaf6;
 			}
