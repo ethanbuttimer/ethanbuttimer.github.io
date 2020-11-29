@@ -2821,11 +2821,11 @@ p.portfolio_item_main_text {
 				 text-align: right;
 			}
 
-			.page_prev h2 a::before {
+			.page_prev h2::before {
 			    content: "<";
 			}
 
-			.page_next h2 a::after {
+			.page_next h2::after {
 			    content: ">";
 			}
 
