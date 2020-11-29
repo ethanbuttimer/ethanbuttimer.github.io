@@ -2812,6 +2812,28 @@ p.portfolio_item_main_text {
   				-webkit-filter: blur(3px);
 			}
 
+			.page_nav {
+				background-color: blue;
+				text-align:center;
+			}
+
+			.page_prev {
+			    float: left;
+			}
+
+			.page_next {
+			    float: right;
+				 text-align: right;
+			}
+
+			.page_prev h2 a::before {
+			    content: "<";
+			}
+
+			.page_next h2 a::after {
+			    content: ">";
+			}
+
 			.tiles article.style1 > .image:before {
 				background-color: #7ecaf6;
 			}
