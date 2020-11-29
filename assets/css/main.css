@@ -2821,11 +2821,19 @@ p.portfolio_item_main_text {
 				 text-align: right;
 			}
 
-			.page_prev h2::before {
+			.page_prev h2 {
+			    padding: 20px 0 20px 0;
+			}
+
+			.page_next h2 {
+			    padding: 20px 0 20px 0;
+			}
+
+			.page_prev h2 a::before {
 			    content: "<";
 			}
 
-			.page_next h2::after {
+			.page_next h2 a::after {
 			    content: ">";
 			}
 
