@@ -140,17 +140,24 @@
 							</div>
 							<h2>Week 8: Simulation and Shading</h2>
 							<p>This week I continued my work on a disintegration simulation in Houdini. I learned how to export animated geometry from Maya that is more simple to manage in Houdini, and am planning to write a script that handles this relatively complicated workflow. I also worked on shading the rings in Substance Painter, using generators and scratch brushes to make the man’s ring look more worn down and rough. I’m now working on a second pass of the ring textures in response to critiques from my teammates.</p>
-
+							<div class="image main">
+							  <img src="images/mirage/solid_ring_black.png" alt="jons ring"/>
+							</div>
 							<div class="image row">
-							  <div class="image column halves">
+							  <div class="image column">
 							    <img src="images/mirage/subs_gui_01.png" alt="gui for substance painter textures"/>
 							  </div>
-							  <div class="image column halves">
+							  <div class="image column">
 							    <img src="images/mirage/b_above.png" alt="braided ring shaded"/>
 							  </div>
+							  <div class="image column">
+							    <img src="images/mirage/jon_rig_01.png" alt="braided ring shaded"/>
+							  </div>
 							</div>
-							<h2>Week 9: Shading and Scripting</h2>
-							<p>To create a more efficient workflow between texture creation in Substance Painter and putting together a node network for our final RenderMan shaders, I wrote a script that automatically creates a PxrSurface network from textures in a given directory. Using the Python Qt library, I built a simple-to-use GUI around this script. Also, I refined the shading of the rings, primarily using curvature and dirt generators in Substance Painter.</p>
+
+							<h2>Weeks 9 and 10: Shading, Scripting, and Rigging</h2>
+							<p>To create a more efficient workflow between texture creation in Substance Painter and shaders for RenderMan, I wrote a script that automatically creates a PxrSurface network from textures in a given directory. Using the Python Qt library, I built a easy-to-use GUI around this script. I'm now working on adding options for subsurface scattering and better control over specular color maps.</p>
+							<p>Additionally, I created Jon's skeleton, following anatomical and rigging references. I then added controllers and constraints to his torso, neck, eyes, arms, and feet, which control IK leg systems. Finally, I refined the shading of the rings using curvature and dirt generators, along with brush details, in Substance Painter.</p>
 
 							<div class="page_nav">
 								<div class="page_prev">
