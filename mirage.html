@@ -51,7 +51,7 @@
 						<div class="inner">
 							<div class="portfolio_item_head">
 								<h1>"Mirage"</h1>
-								<p class="portfolio_item_main_text">Animated short film currently in production, planned to premiere May 2021. Created by students of <i>CNM 190: Advanced Digital Animation</i> at UC Berkeley. Production tools include: Autodesk Maya, Substance Painter, Houdini, Pixar's RenderMan, Nuke, Adobe After Effects, Photoshop. My week-by-week contributions to the project are detailed below.</p>
+								<p class="portfolio_item_main_text">Animated short film currently in production, premiering May 2021! Created by students of <i>CNM 190: Advanced Digital Animation</i> at UC Berkeley. Production tools include: Autodesk Maya, Substance Painter, Houdini, Pixar's RenderMan, Nuke, Adobe After Effects, Photoshop. My week-by-week contributions to the project are detailed below.</p>
 							</div>
 
 							<div class="image row">
@@ -68,14 +68,17 @@
 							    <img src="images/mirage/shot8_apr30.png" alt="hand hold"/>
 							  </div>
 						  	</div>
+							<br/>
 							<h2>April 30, 2021: Lighting and Effects</h2>
 							<p>I've continued to refine the hug and disintegration sequence through particle effects and lighting. I created procedural shaders for the primitive particle spheres using bump, displacement, and color nodes powered by volumetric noise. I also tuned the size, birth rate, and "life expectancy" of the particles in Houdini to reduce the USD file sizes while maintaining a believable volume of sand. Finally, I worked on lighting for several shots, including the darkening of the sky as the storm picks up and Lila begins to disintegrate.</p>
+							<br/><br/>
 
 							<div class="image main">
 							  <img src="images/mirage/render_79.gif" alt="rendered particle disintegration sequence"/>
 						  	</div>
 							<h2>April 23, 2021: Lighting and Effects</h2>
 							<p>This week we finally brought together all of the effects (particle, cloth, hair) we've been working on, rendering one of the key scenes of our short film. I wrote up a detailed effects setup guide and provided technical support for my teammates, giving us the ability to split up the rendering work. I'm responsible for the particle and cloth disintegration effects, generated in Houdini using directed geometry masks. The sand particles were brought into Maya via Multiverse USD, and shaded with RenderMan. Particles emitted from the dress are colored white, while the majority of particles, emitted from the body, are colored brown. I am now researching how to vary size, texture, and color within these two particle sets.</p>
+							<br/><br/>
 
 							<div class="image main">
 							  <img src="images/mirage/particles_apr16.png" alt="particle disintegration"/>
@@ -85,38 +88,42 @@
 							</div>
 							<h2>April 16, 2021: Lighting and Effects</h2>
 							<p>I finalized the hug and disintegration animation in preparation for a full render of this sequence. These changes included timing adjustments for Jon's emotional beats, and refined eye and hand motion for both characters. I also worked in Houdini to direct the spread of the disintegration effect.</p>
+							<br/><br/>
 
 							<div class="image main">
 							  <img src="images/mirage/disint_render_01.png" alt="particle disintegration in renderman"/>
 							</div>
 							<h2>April 9, 2021: Lighting and Effects</h2>
 							<p>This week I learned how to use a USD plugin to transfer particles from Houdini into Maya. I began shading the particles, and put them together with the presence maps that control the visibility of disintegrating mesh geometry over time. I also worked on the lighting for the hug and disintegration sequence.</p>
+							<br/><br/>
 
 							<div class="image main">
 							  <img src="images/mirage/shot5-6_apr_2.gif" alt="run and hug animation update 2"/>
 							</div>
 							<h2>April 2, 2021: Animation and Lighting</h2>
 							<p>This week I incorporated the updated animations into the disintegration effect. I also added to and consolidated shots that needed consistent animations and lighting, bringing the run into the same file as the hug and disintegration sequences. Finally, I gave feedback to my teammates on their lighting work, helping them give the characters effective shaping and coloring.</p>
-
+							<br/><br/>
 
 							<div class="image main">
 							  <img src="images/mirage/shot5_mar_26_2.gif" alt="run and hug animation update"/>
 							</div>
 							<h2>March 26, 2021: Animation and Lighting</h2>
 							<p>I've continued to refine animations for the run, hug, and disintegration sequences this week. I also gave feedback on my teammates' animation work, and we discussed intended lighting techniques. Additionally, I'm working on bringing the sand particles into Maya from the disintegration effect in Houdini.</p>
+							<br/><br/>
 
 							<div class="image main">
 							  <img src="images/mirage/run_hug_mar_19.gif" alt="run and hug animation"/>
 						  	</div>
 							<h2>March 19, 2021: Animation</h2>
 							<p>I continued animating the hug and disintegration sequence this week. I also refined Jon's run cycle, cleaning up some messy splines that were creating "pops," and applying the principles of follow-through and overlapping action to his arm swings and head motion. I also helped bring our Houdini Vellum cloth simulations into Maya with an alembic cache.</p>
+							<br/><br/>
 
 							<div class="image main">
 							  <img src="images/mirage/hug_01.gif" alt="hug animation"/>
 						  	</div>
 							<h2>March 12, 2021: Animation</h2>
 							<p>This week, I animated the hug and disintegration sequences. Taking into account reference footage, the layout in our 2D animatic, and critques from my classmates, I completed two passes of the mechanics for these shots. Additionally, I debugged some rigging and shading issues, like texture warping on Jon's eyelids.</p>
-
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column halves">
@@ -131,6 +138,7 @@
 						  	</div>
 							<h2>March 5, 2021: Effects and Animation</h2>
 							<p>I continued working on the disintegration effect in Houdini, adjusting parameters of the geometry-masking animation and the particle simulation. I also debugged an issue with the procedurally generated presence maps, which had been creating transparent seams in RenderMan. I was able to fix this problem by using post-processing on the texture files to extend colors across the UV shell borders. Additionally, I finished converting all of our color textures to ACEScg, added controllers to some props, and worked on Lila's facial blendshapes.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column">
@@ -148,12 +156,14 @@
 						  	</div>
 							<h2>February 26, 2021: Effects and Animation</h2>
 							<p>Using a geometry mask and particle dynamics in Houdini, I developed Lila's disintegration effect. I learned how to procedurally generate a sequence of presence masks in Houdini, which I then animated in Maya. Additionally, I adjusted the subsurface and single-scatter parameters of my skin shaders to fix color artifacts and preserve more textural detail.</p>
+							<br/><br/>
 
 							<div class="image main">
 							  <img src="images/mirage/lila_side_by_side.png" alt="Lila's facial blendshapes"/>
 						  	</div>
 							<h2>February 19, 2021: Rigging and Layout</h2>
 							<p>This week I returned to facial rigging and the disintegration effect. I refined Lila's blendshapes, trying to closely match her expression sheets so we can convey the right emotions at key moments during the film. I also learned how to transport a cached animation from Maya to Houdini so that I could work on the disintegration effect with Lila's full body.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column">
@@ -171,6 +181,7 @@
 						  	</div>
 							<h2>February 12, 2021: Shading and Layout</h2>
 							<p>I finished up my work on skin shading this week, refining Jon's hand textures to give them a dry and worn down appearance. I also resumed my exploration of Lila's disintegration effect and the workflow between Maya and Houdini. Finally, I discussed changes to story and layout with my teammates.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column halves">
@@ -182,6 +193,7 @@
 						  	</div>
 							<h2>February 5, 2021: Shading and Layout</h2>
 							<p>This week I made improvements to skin shading based on feedback during critique. These changes included adding freckles and other fine details on Lila's face, as well as iterating on the specular and bump details of the hands. Finally, I gave feedback to my teammates on camera placement and timing choices as we developed our layout animatic.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column halves">
@@ -201,6 +213,7 @@
 						  	</div>
 							<h2>January 29, 2021: Shading</h2>
 							<p>Over the past month, I shaded our characters' skin. Working primarily in Substance Painter, I used procedural and hand-painted layers to build roughness, bump, and diffuse textures. I used color adjustment layers to create effects like the redness on the nose and fingertips, lighting-based generators to give Jon a sunburn, and masked displacement layers to sculp the details on the ears, hands, and more. I built the shader network and applied subsurface scattering using RenderMan in Maya.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column halves">
@@ -212,6 +225,7 @@
 						  	</div>
 							<h2>December 11, 2020: Shading, Scripting, and Rigging</h2>
 							<p>This week I've worked on blendshapes and eye rigs. I also continued to develop my Substance Painter to Renderman workflow tool, adding support for subsurface color textures and different specular modes. The tool can now be used to either create a new PxrSurface or update an existing one. Finally, I'm beginning to work on shading Jon's skin textures.</p>
+							<br/><br/>
 
 							<div class="image main">
 							  <img src="images/mirage/solid_ring_black.png" alt="jons ring"/>
@@ -230,6 +244,7 @@
 							<h2>December 4, 2020: Shading, Scripting, and Rigging</h2>
 							<p>To create a more efficient workflow between texture creation in Substance Painter and shaders for RenderMan, I wrote a script that automatically creates a PxrSurface network from textures in a given directory. Using the Python Qt library, I built a easy-to-use GUI around this script. I'm now working on adding options for subsurface scattering and better control over specular color maps.</p>
 							<p>Additionally, I created Jon's skeleton, following anatomical and rigging references. I then added controllers and constraints to his torso, neck, eyes, arms, and feet, which control IK leg systems. Finally, I refined the shading of the rings using curvature and dirt generators, along with brush details, in Substance Painter.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column halves">
@@ -241,12 +256,14 @@
 							</div>
 							<h2>November 20, 2020: Simulation and Shading</h2>
 							<p>This week I continued my work on a disintegration simulation in Houdini. I learned how to export animated geometry from Maya that is more simple to manage in Houdini, and am planning to write a script that handles this relatively complicated workflow. I also worked on shading the rings in Substance Painter, using generators and scratch brushes to make the man’s ring look more worn down and rough. I’m now working on a second pass of the ring textures in response to critiques from my teammates.</p>
+							<br/><br/>
 
 							<div class="image main">
 							    <img src="images/mirage/hand_disint_01.gif" alt=""/>
 							</div>
 							<h2>November 13, 2020: Modeling and Simulation</h2>
 							<p>I finished the UV maps for the rings (bands and gems) and the shrub I modeled. Additionally, I learned how to create a Boolean-based disintegration effect in Houdini that maintains the illusion of a solid model (rather than a mesh). For this effect, I’m now working on creating a more realistic particle simulation by varying particle size and color, and making sure that the amount of sand emitted roughly matches the volume of the disintegrated object.</p>
+							<br/><br/>
 
 							<div class="image row">
 								<div class="image column">
@@ -261,6 +278,7 @@
 							</div>
 							<h2>November 6, 2020: Modeling and Simulation</h2>
 							<p>I made more adjustments to the proportions of the ring models in response to critiques, and began creating UV maps for these. I also created a new model inspired by a shrub found in the Gobi desert. Finally, I’ve continued learning to use Houdini to create a disintegration simulation, and I attempted to find ways to bring work from Houdini into Maya (with little luck, due to the license I currently own). I’m looking into using geometry booleans as a way to get a more volumetric appearance as Lila disintegrates.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column halves">
@@ -272,6 +290,7 @@
 							</div>
 							<h2>October 30, 2020: Modeling and Simulation</h2>
 							<p>Iterating on the ring models from last week, I refined the braided band and connected it to the prongs. I also increased the sizes of the gems in proportion to the bands, adjusting the ring shape and prongs as needed. Additionally, I’ve been learning how to create the effect of a dissolving object on Houdini, layering stylized edge-geometry effects with turbulent particle simulation. I continued to share thoughts on the story and characters during meetings.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column halves">
@@ -283,6 +302,7 @@
 							</div>
 							<h2>October 23, 2020: Modeling and Simulation</h2>
 							<p>This week I created first-pass models of the ring bands, including consistent prongs and edge details. I also began to look into several methods of simulation for the disintegration scene, including a realistic approach using nParticles in Maya, and a more stylized version created with Houdini. Finally, I helped make decisions on story changes and the desired appearance of sand simulations.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column halves">
@@ -294,6 +314,7 @@
 							</div>
 							<h2>October 16, 2020: Pre-Production and Modeling</h2>
 							<p>As we prepared for the class critique, I adjusted the plant designs and then compiled them into an environment drawing. I also contributed toward conversations on story and character design, particularly as we made decisions on the actions and the clothing of Lila. Then, I created two gemstones models, as well as some preliminary test models for the band of Lila’s ring, including one with braids.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column halves">
@@ -305,6 +326,7 @@
 							</div>
 							<h2>October 9, 2020: Pre-Production</h2>
 							<p>I worked mainly on revising the animatic between each critique, adjusting timing and making decisions on components of the story and details to be cut or emphasized. I also provided feedback for the character and environment design, pushing for a saharan-style desert, and I took notes for the team during Monday’s critique/lecture and parts of the team meetings. Finally, I sketched out a few ideas for the ring assets, trying to make sure they complement each other and fit the characters and premise.</p>
+							<br/><br/>
 
 							<div class="image row">
 							  <div class="image column">
