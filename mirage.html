@@ -52,9 +52,9 @@
 							<div class="portfolio_item_head">
 								<h1>"Mirage"</h1>
 								<div class="video_wrapper">
-									<iframe width="100%" height="100%" src="https://www.youtube.com/embed/sRa3YHv3UUw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=true></iframe>
+									<iframe width="100%" height="100%" src="https://www.youtube.com/embed/Zej4OpEL_dQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=true></iframe>
 								</div>
-								<p class="portfolio_item_main_text">Animated short film created by students of <i>CNM 190: Advanced Digital Animation</i> at UC Berkeley, during the 2020-2021 virtual school year. Production tools include Autodesk Maya, ZBrush, Substance Painter, Houdini, RenderMan, Nuke, After Effects, and Photoshop. I developed skills as a technical director as well as an artist, focusing on shading and effects workflows while contributing toward all parts of the animation pipeline. Thanks to the course staff and guest lecturers who mentored and supported us through all nine months of production!</p>
+								<p class="portfolio_item_main_text">Animated short film created by students of <i>CNM 190: Advanced Digital Animation</i> at UC Berkeley, during the 2020-2021 (virtual) school year. Production tools include Autodesk Maya, ZBrush, Substance Painter, Houdini, RenderMan, Nuke, After Effects, and Photoshop. I developed skills as a technical director as well as an artist, focusing on shading and effects workflows while contributing toward all parts of the animation pipeline. Thanks to the course staff and guest lecturers who mentored and supported us through all nine months of production!</p>
 							</div>
 
 							<h1 style="font-weight:normal">Highlights</h1>
@@ -63,14 +63,18 @@
 							<div class="image main">
 							  <img src="images/mirage/shot1_comp_0032.png" alt="close up of jon to start the short"/>
 						  	</div>
-							<!--h2>Shading</h2-->
-							<p></p>
+							<h2>Skin Shading</h2>
+							<p>Using a combination of hand-drawn and procedural layers in Substance Painter, I created the skin textures of both characters. For Jon's face and hands in particular, I used light-based generators to create dry and sunburnt looking areas. I then put together a RenderMan shader network using these textures. In fact, I built a <a href="https://github.com/ethanbuttimer/maya-tools/blob/main/subsTexturesUI.py" target="_blank">PyQt-based tool</a> to expedite the process of setting up a RenderMan shader using textures from Substance Painter. In RenderMan, I added subsurface scattering to give the ears and fingers some translucency, and to make the skin more life-like overall. All textures and renders were executed in linear workflow using the ACEScg color space.</p>
 							<div class="image main">
 							  <img src="images/mirage/shot5_run_final.png" alt="jon running"/>
 							</div>
+							<h2>Animation</h2>
+							<p>In Maya, I worked on the animation of the run, hug, and disintegration sequences. From the bounce in Jon's hips to the bending of each finger, each layer of motion required iteration and attention to detail.</p>
 							<div class="image main">
 							  <img src="images/mirage/shot6_0352.png" alt="hug with lila"/>
 							</div>
+							<h2>Lighting</h2>
+							<p>I also set up most of the lighting for the hug sequence. For the shot above, three-point lighting produced the highlights on Lila's nose, the warm rim around her hair, and the soft fill on her hand. I used a small, light-linked sphere light to bring out the vibrance of Lila's ring gem. Additonally, I animated the brightness of an HDRI dome light to gradually bring on some darkness as Lila disintegrated.</p>
 							<div class="image main">
 							  <img src="images/mirage/shot7_0498.png" alt="disintegration"/>
 							</div>
@@ -80,12 +84,18 @@
 							<div class="image main">
 							  <img src="images/mirage/shot9_01.png" alt="hand disappearing"/>
 							</div>
+							<h2>Particle Effects</h2>
+							<p>I generated the sand particles for Lila's disintegration using Houdini. First, I animated multiple geometry masks in order to spread the extent of disintegration over time. I then used a POP network, first to generate particles with randomized transforms, then to simulate the particles as they flew through turbulent wind. Additionally, I generated sequences of <a href="#presenceSeq">grayscale presence textures</a>, used to animate the disappearance of Lila's body and clothing meshes. Body animation, cloth simulation, and particle data were transferred between Maya and Houdini via Alembic cache.</p>
 							<div class="image main">
 							  <img src="images/mirage/shot11_01.png" alt="jon alone"/>
 							</div>
+							<h2>Rigging</h2>
+							<p>I worked on the rigging of Jon's face, mainly using blend shapes to create facial expressions. Each control drove the motion of a particular section of a lip, cheek, eyelid, eyebrow, or some other muscle in the face.</p>
 							<div class="image main">
 							  <img src="images/mirage/shot12_01.png" alt="hand pov"/>
 						  	</div>
+							<h2>Ring Modeling and Shading</h2>
+							<p>I modeled both rings, including the gem and metal components. Lila's braided ring was an exciting challenge for me, testing my hard-surface modeling skills in Maya. See my <a href="#ringPost">12/4 blog post</a> for close-ups of the rings. Like Jon's skin, I also shaded the rings using Substance Painter and RenderMan.</p>
 							<div class="image main">
 							  <img src="images/mirage/shot16_01.png" alt="end shot"/>
 						  	</div>
@@ -190,7 +200,7 @@
 							<p>This week I continued my work on a disintegration simulation in Houdini. I learned how to export animated geometry from Maya that is more simple to manage in Houdini, and am planning to write a script that handles this relatively complicated workflow. I also worked on shading the rings in Substance Painter, using generators and scratch brushes to make the man’s ring look more worn down and rough. I’m now working on a second pass of the ring textures in response to critiques from my teammates.</p>
 							<br/><br/>
 
-							<div class="image main">
+							<div id="ringPost" class="image main">
 							  <img src="images/mirage/solid_ring_black.png" alt="jons ring"/>
 							</div>
 							<div class="image row">
@@ -282,7 +292,7 @@
 							  <div class="image column">
 							    <img src="images/mirage/lila_burley_single_scatter_03.png" alt="Subsurface adjustments"/>
 							  </div>
-							  <div class="image column">
+							  <div id="presenceSeq" class="image column">
 							    <img src="images/mirage/procedural_presence.png" alt="Presence/transparency map"/>
 							  </div>
 							  <div class="image column">
