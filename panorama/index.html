@@ -1,0 +1,262 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>CS194-26 Project 4</title>
+		<link href="styles.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+		<div id='return'>
+			<a href='../index.html'>Portfolio</a>
+		</div>
+
+		<h1>Photo Mosaics</h1>
+		<h4>COMPSCI 194-26: Computational Photography & Computer Vision</h4>
+		<h4>Professors Alyosha Efros & Angjoo Kanazawa</h4>
+		<h4>October 14, 2021</h4>
+		<h4>Ethan Buttimer</h4>
+
+		<h2 id="part">PART A</h2>
+
+		<div class="sec" id="overview">
+			<h2>Overview</h2>
+
+			<p>In this project for <a href="https://inst.eecs.berkeley.edu/~cs194-26/fa21/" target="_blank">CS194-26</a>, we learned how to warp and combine images into seamless photo mosaics! The first step is to compute homographies and use them to warp images. We could then stitch these images together (with some clever blending techniques) to create the panoramic mosaics. These mosaics appear to be taken from a single viewing angle, when in fact they are made of a collection of images taken from different angles.</p>
+
+			<img style="width:90%" src="images/indoors/best_indoors_mosaic.jpeg">
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>Shooting the Pictures</h2>
+
+			<img style="width:70%" src="images/diablo/IMG_3580.jpeg">
+
+			<p>I shot all of the images used in this project on my iPhone 11 camera at the default focal length and with locked exposure. The images used for a mosaic were all taken from the same camera location with about 50% overlap at different rotations.</p>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>Recovering Homographies</h2>
+
+			<img style="width:45%" src="images/corres_points_02.jpeg">
+			<img style="width:45%" src="images/corres_points_01.jpeg">
+
+			<p>To define a homography between two images, at least four points of correspondence must be selected. Then, using the method detailed <a href="https://towardsdatascience.com/estimating-a-homography-matrix-522c70ec4b2c">here</a>, I could compute the parameters of the 3x3 homographic transformation matrix. This matrix allowed me to warp one image such that it appears to have been taken from the camera angle of a different image. I also implemented least squares in order to compute the optimal transformation parameters given an over-constrained system of more than four points. I often saved correspondence points to JSON so they could be reused.</p>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>Warping Images</h2>
+
+			<img style="width:45%" src="images/diablo/IMG_3578.jpeg">
+			<img style="width:45%" src="images/diablo/IMG_3578_warped.jpeg">
+
+			<p>I began the warping process by computing the corners of the warped image. I then created a binary alpha mask using these corner coordinates. Next, I gathered the coordinates of the pixels inside the mask and applied the inverse homography to them. The transformed coordinates were then used to sample from the unwarped image using bilinear interpolation, and the final warped image was assigned these colors.</p>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>Image Rectification</h2>
+
+			<p>Using a correspondence between a square surface in an image (viewed as a non-square quadrilateral) and a manually defined square, I could compute a homography to warp a source image such that the chosen surface takes the shape of a square. This "image rectification" technique is shown below, performed on the pink surface of the Rubik's cube and the bottom of a tissue box.</p>
+
+			<table border=2px>
+			  <tr>
+				<th>Source</th>
+				<th>Rectified</th>
+			  </tr>
+			  <tr>
+				<td><img src="images/rubik.jpeg"></td>
+				<td><img src="images/rubik_rect_crop.jpeg"></td>
+			  </tr>
+			  <tr>
+				<td><img src="images/kleenex.jpeg"></td>
+				<td><img src="images/kleenex_rect.jpeg"></td>
+			  </tr>
+			</table>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>Mosaic Creation</h2>
+
+			<p>I formed my mosaics iteratively, adding a single warped image to the full mosaic each time so that new correspondence points could be defined if necessary.</p>
+
+			<p>On a single iteration, the mosaic (or starting image) remained fixed, while the new image was warped. Then, I computed constraints on the bounds of the mosaic to be formed using the offsets returned by the warping operation. I also generated masks for the current mosaic and the new warped image.</p>
+
+			<table border=2px>
+			  <tr>
+  				<th colspan=3>Illustration of Blending Operations</th>
+  			  </tr>
+			  <tr>
+				<td>New mask</td>
+				<td>Existing mask</td>
+				<td>Overlap</td>
+			  </tr>
+			  <tr>
+				<td><img src="images/demo/im2_mask.jpeg"></td>
+				<td><img src="images/demo/im1_mask.jpeg"></td>
+				<td><img src="images/demo/overlap.jpeg"></td>
+			  </tr>
+			  <tr>
+				<td>New mask, minus blurred overlap</td>
+				<td>Existing mask, blurring along edge of overlap</td>
+				<td>Existing mask, fully blurred</td>
+			  </tr>
+			  <tr>
+				<td><img src="images/demo/im2_b_mask.jpeg"></td>
+				<td><img src="images/demo/im1_b_mask.jpeg"></td>
+				<td><img src="images/demo/im1_full_b_mask.jpeg"></td>
+			  </tr>
+			  <tr>
+				<td>Color contribution of new image</td>
+				<td>Color contribution of existing mosaic</td>
+				<td>Added result</td>
+			  </tr>
+			  <tr>
+				<td><img src="images/demo/im2_b_color.jpeg"></td>
+				<td><img src="images/demo/im1_b_color.jpeg"></td>
+				<td><img src="images/demo/result.jpeg"></td>
+			  </tr>
+			</table>
+
+			<p>To blend the images together, I first found the overlap of the two masks. Next, I found the masks of the two image <i>without</i> the overlapped area (by subtraction). I then created two special masks: one for the current mosaic, with a blurred boundary only along the boundary of the overlap zone, the other for the new image with a blur only along this same boundary. Creating these two masks involved clipping and scaling the range of a Gaussian blur, and a few mask subtraction operations. Finally, I multiplied each of these masks by the corresponding (transformed) image, and added them together to get the new blended mosaic for that step! I chose this edge-only method of blending so that as much of the mosaic as possible could consist of pixels from just one image, rather than a blend of two or more. Below, I've shown how my method compares to simple pixel replacement on one mosaic.</p>
+
+			<img style="width:42%" src="images/indoors/replacement.jpeg">
+			<img style="width:45%" src="images/indoors/best_indoors_mosaic.jpeg">
+		</div>
+
+		<h2 id="part">PART B</h2>
+
+		<div class="sec" id="overview">
+			<h2>Overview</h2>
+
+			<p>For the second part, I implepented automatic correspondence generation (rather than hand-picked points of correspondence). This involved detecting and extracting features, then matching and filtering these corners with Adaptive Non-Maximal Suppression (ANMS) and Random Sample Consensus (RANSAC).</p>
+
+			<p>One component of this project I was how to find translational and bias/gain invariant features. The correct matches over these 8x8 patches had a surprisingly small SSD value and act as a great way to distinguish features.</p>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>Detecting and Selecting Harris Corners</h2>
+
+			<img style="width:50%" src="images_b/harris_unfiltered.jpeg">
+
+			<p>First, I detected Harris corners in the image using Gaussian derivative filters and a corner response function. Above, I've shown these (completely unfiltered) Harris corners on a single image. Note that I've purposefully excluded points along the edges of the image, since these tend to produce errors.</p>
+
+			<img style="width:50%" src="images_b/harris_filtered.jpeg">
+
+			<p>I then used the ANMS algorithm to pick the best 500 Harris corners generated on the image. This gave me a set of points with high Harris corner-variance values and a balanced spread across the image. This filtered collection is shown above.</p>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>Extracting Feature Descriptors</h2>
+
+			<img style="width:45%" src="images_b/blur.jpeg">
+			<img style="width:45%" src="images_b/lowres.jpeg">
+
+			<p>I started by rescaling the image to a fifth of the original size in each dimension. This involved a blurring step and a downsampling step (shown above) to avoid aliasing.</p>
+
+			<img style="width:40%" src="images_b/standard_feat.jpeg">
+			<img style="width:45%" src="images_b/normalized_feat.jpeg">
+
+			<p>For each of the selected Harris corners, I created an 8x8 array representing the neighborhood of that point on the image, our desired feature. To make these features invariant to changes like lighting, I subtracted the mean pixel value and divided by their standard devaition to normalize the values of each feature.</p>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>Matching Features</h2>
+
+			<img style="width:45%" src="images_b/left_match.jpeg">
+			<img style="width:45%" src="images_b/right_match.jpeg">
+
+			<p>To pair up the Harris corners between the two images, I computed the sum of squared differences (SSD) between each of the 8x8 features and sorted them using these SSD values. I then found the two nearest matches for each feature and computed 1-NN / 2-NN, where 1-NN is the SSD with the first nearest, and 2-NN is the SSD with the second nearest. I rejecting pairs where 1-NN / 2-NN > 0.4 in my implementation of Lowe's Trick.</p>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>Computing Homographies with RANSAC</h2>
+
+			<img style="width:45%" src="images_b/left_pts.jpeg">
+			<img style="width:45%" src="images_b/right_pts.jpeg">
+
+			<p>The final step to find matching correspondences and the homography between the images was RANSAC. For a fixed number of iterations (I usually used 100), four pairs of correspondences are selected and the homographic transformation between them is computed. Then, this homography is applied to all of the corner coordinates for one image, and these are compared to the unwarped coordinates for the other image. If the distance is less than a parameter &epsilon; (I usually used &epsilon;=1 pixel) then it is considered an inlier and added to a list for that iteration. The maximum-length inlier list is used to get the final correspondence points and their homography (computed with least-squares over all inliers).</p>
+		</div>
+
+		<h2 id="part">RESULTS</h2>
+
+		<div class="sec" id="approach">
+			<h2>Mt. Diablo Panorama</h2>
+
+			<table border=2px>
+			  <tr>
+  				<th colspan=4>Source Images</th>
+  			  </tr>
+			  <tr>
+				<td><img src="images/diablo/IMG_3578.jpeg"></td>
+				<td><img src="images/diablo/IMG_3580.jpeg"></td>
+				<td><img src="images/diablo/IMG_3582.jpeg"></td>
+				<td><img src="images/diablo/IMG_3593.jpeg"></td>
+			  </tr>
+			  <tr>
+				<td colspan=4>Manual (Part A)</td>
+			  </tr>
+			  <tr>
+				<td colspan=4><img src="images/diablo/best_diablo_mosaic.jpeg"></td>
+			  </tr>
+			  <tr>
+			  	<td colspan=4>Automatic (Part B)</td>
+			  </tr>
+			  <tr>
+				<td colspan=4><img src="images_b/best_diablo_mosaic_auto.jpeg"></td>
+			  </tr>
+			</table>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>House Exterior</h2>
+
+			<table border=2px>
+			  <tr>
+  				<th colspan=3>Source Images</th>
+  			  </tr>
+			  <tr>
+				<td><img src="images/house/IMG_3616.jpeg"></td>
+				<td><img src="images/house/IMG_3617.jpeg"></td>
+				<td><img src="images/house/IMG_3619.jpeg"></td>
+			  </tr>
+			  <tr>
+				<td colspan=3>Manual (Part A)</td>
+			  </tr>
+			  <tr>
+				<td colspan=3><img src="images/house/best_house_mosaic.jpeg"></td>
+			  </tr>
+			  <tr>
+			  	<td colspan=3>Automatic (Part B)</td>
+			  </tr>
+			  <tr>
+				<td colspan=3><img src="images_b/best_house_mosaic_auto.jpeg"></td>
+			  </tr>
+			</table>
+		</div>
+
+		<div class="sec" id="approach">
+			<h2>House Interior</h2>
+
+			<table border=2px>
+			  <tr>
+  				<th colspan=3>Source Images</th>
+  			  </tr>
+			  <tr>
+				<td><img src="images/indoors/IMG_3600.jpeg"></td>
+				<td><img src="images/indoors/IMG_3602.jpeg"></td>
+				<td><img src="images/indoors/IMG_3604.jpeg"></td>
+			  </tr>
+			  <tr>
+				<td colspan=3>Manual (Part A)</td>
+			  </tr>
+			  <tr>
+				<td colspan=3><img src="images/indoors/best_indoors_mosaic.jpeg"></td>
+			  </tr>
+			  <tr>
+			  	<td colspan=3>Automatic (Part B)</td>
+			  </tr>
+			  <tr>
+				<td colspan=3><img src="images_b/best_indoors_mosaic_auto.jpeg"></td>
+			  </tr>
+			</table>
+		</div>
+	</body>
+</html>
