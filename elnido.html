@@ -1,0 +1,155 @@
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Ethan Buttimer - Procedural Island Shader</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<div class="inner">
+
+							<!-- Logo -->
+								<a href="index.html" class="logo">
+									<span class="title">Ethan Buttimer <span style="font-weight:normal">&#183; Portfolio</span></span>
+								</a>
+
+							<!-- Nav -->
+								<nav>
+									<ul>
+										<li><a href="#menu">Menu</a></li>
+									</ul>
+								</nav>
+
+						</div>
+					</header>
+
+				<!-- Menu -->
+					<nav id="menu">
+						<h2>Menu</h2>
+						<ul>
+							<li><a href="index.html">Portfolio</a></li>
+							<li><a href="https://youtu.be/bndwl_Uskhs" target="_blank">Demo Reel</a></li>
+							<li><a href="ethan_buttimer_resume_latest.pdf" target="_blank">Resume</a></li>
+							<li><a href="contact.html">Contact</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+							<h1>Procedural Island Shader</h1>
+
+							<div class="portfolio_item_head">
+								<p class="portfolio_item_main_text"></p>
+							</div>
+
+							<div class="image main">
+								<img src="images/elnido/multi_island_better.jpg" alt="main islands render"/>
+						    </div>
+							<div class="image main">
+								<img src="images/elnido/nodes_full_shader.jpg" alt="main islands render"/>
+						    </div>
+							<p class="portfolio_item_main_text">In January 2023, I toured the islands surrounding the town of El Nido, Palawan, Philippines. When I returned, I created this project to capture the majesty of these islands -- in particular, the contrast between their inviting beaches and jagged peaks. I built a shader network in Blender that can generate an infinite variety of these islands (and the surrounding water) given a basic subdivided grid.</p> 
+							<p class="portfolio_item_main_text">The colored nodes in the my shader, shown above, each contain subnetworks of their own that describe how to power displacement maps and material attributes using fully procedural textures like Voronoi and Perlin noise. We get the complete island shader by carefully layering all of these generated textures!</p>
+
+							<div class="image row">
+							    <div class="image column halves">
+							        <img src="images/elnido/island_height_map_02.jpg" alt="island height map"/>
+							    </div>
+							    <div class="image column halves">
+							        <img src="images/elnido/wave_height_map_02.jpg" alt="wave height map"/>
+							    </div>
+							</div>
+							<div class="image row">
+							    <div class="image column halves">
+								    <img src="images/elnido/vegetation_map.jpg" alt="vegetation shader presence"/>
+								</div>
+							    <div class="image column halves">
+							        <img src="images/elnido/above.jpg" alt="islands from above"/>
+							    </div>
+							</div>
+							<div class="image main">
+								<img src="images/elnido/nodes_island_height.jpg" alt="shader nodes for island height"/>
+						    </div>
+							<div class="image main">
+								<img src="images/elnido/nodes_wave_height.jpg" alt="shader nodes for wave height"/>
+						    </div>
+							<p class="portfolio_item_main_text">The island height map (top left) is based on a warped Voronoi texture. The higher elevation parts of the islands have vegetation, activated by the generated mask shown bottom left.</p>
+							<p class="portfolio_item_main_text">The wave texture (top right) is a mixture of several sine waves. The unidirectional waves farther from the islands take in a warped x-coordinate as the input to the sine function, while the waves closer to shore use the island height texture to estimate the "depth" of the water as the input to sine. As seen in my demo, the phase of the waves can be animated to create the appearance of wave crashing ashore!</p>
+
+							<div class="image row">
+							    <div class="image column halves">
+								    <img src="images/elnido/beach_sand.jpg" alt="beach close up"/>
+								</div>
+							    <div class="image column halves">
+							        <img src="images/elnido/beach1.jpg" alt="beach with fog"/>
+							    </div>
+							</div>
+							<div class="image main">
+								<img src="images/elnido/nodes_sand_shader.jpg" alt="shader nodes for sand BSDF"/>
+						    </div>
+							<p class="portfolio_item_main_text">Here's some renders closer up to the beach that show off my sand material. I used a Voronoi texture to create the cell-like pattern of inverted bumps. This high-frequency bump texture powers the normals of the surface rather than vertex displacement. Additionally, the sand appears darker and wetter as it descends toward the water. Similar node networks were used for the bump, color, roughness, and specularity of the four other materials in my shader.</p>
+							<p class="portfolio_item_main_text">The palm trees were acquired from <a href="https://blendermarket.com/products/tropical-palm-trees">Blender Market</a> and scattered on the beaches using geometry nodes. I created the clouds using 4D Perlin noise, gradients, and principled volume shaders, roughly following <a href="https://youtu.be/AUMnb0UYE5g">this tutorial by CGMatter</a>.</p>
+
+							<div class="image row">
+							    <div class="image column halves">
+								    <img src="images/elnido/island1.jpg" alt="beach close up"/>
+								</div>
+							    <div class="image column halves">
+							        <img src="images/elnido/full_shader_with_palms.jpg" alt="beach with fog"/>
+							    </div>
+							</div>
+
+							<div class="page_nav">
+								<div class="page_prev">
+									<h2><a href="toadlet.html">Pumpkin Toadlet</a></h2>
+								</div>
+								<div class="page_next">
+									<h2><a href="mirage.html">Mirage</a></h2>
+								</div>
+							</div>
+						</div>
+					</div>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<div class="inner">
+							<section>
+								<h2>Get in touch</h2>
+								<ul class="icons">
+									<li><a href="https://www.facebook.com/ethan.buttimer/" target="_blank" class="icon brands style2 fa-facebook-f"><span class="label">Facebook</span></a></li>
+									<li><a href="https://www.instagram.com/ethanbuttimer/" target="_blank" class="icon brands style2 fa-instagram"><span class="label">Instagram</span></a></li>
+									<li><a href="https://www.linkedin.com/in/ethanbuttimer/" target="_blank" class="icon brands style2 fa-linkedin"><span class="label">LinkedIn</span></a></li>
+									<li><a href="https://github.com/ethanbuttimer" target="_blank" class="icon brands style2 fa-github"><span class="label">GitHub</span></a></li>
+									<li><a href="mailto:ethan.buttimer@gmail.com?subject=Saw your website, Ethan!" class="icon solid style2 fa-envelope"><span class="label">Email</span></a></li>
+								</ul>
+							</section>
+							<ul class="copyright">
+								<li>Design: Adaption of "Phantom" from <a href="http://html5up.net">HTML5 UP</a></li>
+							</ul>
+						</div>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

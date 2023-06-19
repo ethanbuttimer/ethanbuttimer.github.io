@@ -2690,7 +2690,7 @@ p.portfolio_item_main_text {
 		-webkit-flex-wrap: wrap;
 		-ms-flex-wrap: wrap;
 		flex-wrap: wrap;
-		postiion: relative;
+		position: relative;
 		margin: -2.5em 0 0 -2.5em;
 	}
 
@@ -2739,7 +2739,9 @@ p.portfolio_item_main_text {
 					opacity: 0.8;
 				}
 
-				.tiles article > .image:after {
+				/* X across the articles */
+				
+				/*.tiles article > .image:after {
 					pointer-events: none;
 					-moz-transition: opacity 0.5s ease;
 					-webkit-transition: opacity 0.5s ease;
@@ -2758,7 +2760,7 @@ p.portfolio_item_main_text {
 					background-size: 100% 100%;
 					opacity: 0.25;
 					z-index: 2;
-				}
+				}*/
 
 			.tiles article > a {
 				display: -moz-flex;
@@ -2827,8 +2829,8 @@ p.portfolio_item_main_text {
 				object-fit: cover;
   				width:300px;
   				height:300px;
-				filter: blur(3px);
-  				-webkit-filter: blur(3px);
+				/*filter: blur(1px);
+  				-webkit-filter: blur(1px);*/
 			}
 
 			.page_nav::after {
