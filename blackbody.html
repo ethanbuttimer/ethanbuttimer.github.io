@@ -56,16 +56,16 @@
 								</div>
 								<p class="portfolio_item_main_text">As my final project for <i>CS184: Computer Graphics and Imaging</i> at UC Berkeley, I worked with Jen Hoang and Susan Lin to simulate the blackbody glow of metal objects at high temperatures. The resulting renders take into account non-uniform heat distributions and optical material properties, heightening realism.</p>
 							</div>
-							<span class="image main"><img src="images/blackbody/heat_colors.png" alt="heat colors" /></span>
+							<span class="image main"><img src="images/blackbody/heat_colors.jpg" alt="heat colors" /></span>
 							<h2>Emission and Color Reproduction</h2>
 							<p>We start by implementing the glow of perfectly diffuse emissive objects for some input temperature. In this case, our object is an ideal blackbody that absorbs and re-emits all energy falling upon it. After computing the radiance of our blackbody with Planck's Law of Blackbody Radiation, we convert this high dimensional spectrum to an sRGB color compatible with the computer display.</p>
-							<span class="image main"><img src="images/blackbody/gold.png" alt="gold bunny" /></span>
+							<span class="image main"><img src="images/blackbody/gold.jpg" alt="gold bunny" /></span>
 							<h2>Reflectance and Polarization</h2>
 							<p>We combined our estimate of blackbody radiation with the reflectance of the metal, allowing us to realistically render glow effects for various metallic materials. The final sampled color is a combination of reflected and emitted light, weighted according to Kirchhoff's Law of Thermal Radiation. We also explored how polarization of light changes glow effects and reflections.</p>
-							<span class="image main"><img src="images/blackbody/distributions.png" alt="heat distributions" /></span>
+							<span class="image main"><img src="images/blackbody/distributions.jpg" alt="heat distributions" /></span>
 							<h2>Temperature Distributions</h2>
 							<p>When raytracing, we sample the temperature at each point of intersection. These sampled temperatures are dependent on the type of temperature distribution given: uniform, linear, or noise-based. The linear distribution applies a smooth temperature gradient, and the noise map applies the pseudo-random Perlin noise function with control over temperature range and noise fineness.</p>
-							<span class="image main"><img src="images/blackbody/proj_3.png" alt="adaptive sampling" /></span>
+							<span class="image main"><img src="images/blackbody/proj_3.jpg" alt="adaptive sampling" /></span>
 							<h2>Path Tracer Codebase</h2>
 							<p>Our blackbody renderer was built as an extension of the <a href="https://cs184.eecs.berkeley.edu/sp20/article/20/assignment-3-1-pathtracer" target="_blank">CS184 Project 3: Pathtracer</a> codebase. For this previous project, I implemented the core path tracing algorithms of a physically-based renderer, including ray-geometry intersection, direct and global illumination with Russian Roulette recursion, and adaptive sampling. Additionally, I developed microfacet material modeling and depth-of-field lens simulation.</p>
 							<span class="image main" style="margin-left:20%;width:60%"><img src="images/blackbody/noiseDragon_extra.png" alt="spotted dragon" />
