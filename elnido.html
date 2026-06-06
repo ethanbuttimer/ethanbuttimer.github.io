@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Ethan Buttimer - Procedural Island Shader</title>
+		<title>Ethan Buttimer - Shaders</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="assets/css/main.css" />
@@ -48,11 +48,32 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<h1>Procedural Island Shader</h1>
+							<h1>Shaders!</h1>
 
-							<div class="portfolio_item_head">
-								<p class="portfolio_item_main_text"></p>
+							<h2>Real-Time Shaders in Unity</h2>
+
+							<div class="image row">
+								<div class="image column halves">
+									<img src="images/shaders/monke12-19.jpg" alt="shaded monkey"/>
+								</div>
+								<div class="image column halves">
+									<img src="images/shaders/concept.jpg" alt="monkey concept art"/>
+								</div>
 							</div>
+							<p class="portfolio_item_main_text">Painterly toon shader applied to a <a href="https://www.instagram.com/p/CzU5RXKxUod/?img_index=1">sculpt by @riodrawing</a>, based on <a href="https://www.instagram.com/p/COnwNK2Aheb/">concept art by @raulmorenocoslado</a>.</p>
+
+							<div class="webgl-content">
+								<div id="unityContainer" style="width: 960px; height: 600px"></div>
+								<div class="footer">
+									<div class="webgl-logo"></div>
+									<div class="fullscreen" onclick="unityInstance.SetFullscreen(1)"></div>
+								</div>
+							</div>
+							<p class="portfolio_item_main_text">Metallic, Voronoi noise-based HLSL shader created for Unity. All lighting and surface detail is procedurally generated and can be applied to any UV-mapped mesh.</p>
+
+							<h2>Procedural Island Shader in Blender</h2>
+
+							<p class="portfolio_item_main_text">Shader and geometry nodes capturing the islands of the Philippines -- in particular, the contrast between their inviting beaches and jagged peaks. The colored nodes in the my shader, shown above, each contain subnetworks of their own that describe how to power displacement maps and material attributes using fully procedural textures like Voronoi and Perlin noise. We get the complete island shader by carefully layering all of these generated textures!</p>
 
 							<div class="image main">
 								<img src="images/elnido/multi_island_better.jpg" alt="main islands render"/>
@@ -60,17 +81,8 @@
 							<div class="image main">
 								<img src="images/elnido/nodes_full_shader.jpg" alt="main islands render"/>
 						    </div>
-							<p class="portfolio_item_main_text">In January 2023, I toured the islands surrounding the town of El Nido, Palawan, Philippines. When I returned, I created this project to capture the majesty of these islands -- in particular, the contrast between their inviting beaches and jagged peaks. I built a shader network in Blender that can generate an infinite variety of these islands (and the surrounding water) given a basic subdivided grid.</p> 
-							<p class="portfolio_item_main_text">The colored nodes in the my shader, shown above, each contain subnetworks of their own that describe how to power displacement maps and material attributes using fully procedural textures like Voronoi and Perlin noise. We get the complete island shader by carefully layering all of these generated textures!</p>
+							
 
-							<div class="image row">
-							    <div class="image column halves">
-							        <img src="images/elnido/island_height_map_02.jpg" alt="island height map"/>
-							    </div>
-							    <div class="image column halves">
-							        <img src="images/elnido/wave_height_map.jpg" alt="wave height map"/>
-							    </div>
-							</div>
 							<div class="image row">
 							    <div class="image column halves">
 								    <img src="images/elnido/vegetation_map.jpg" alt="vegetation shader presence"/>
@@ -79,14 +91,9 @@
 							        <img src="images/elnido/above.jpg" alt="islands from above"/>
 							    </div>
 							</div>
-							<div class="image main">
-								<img src="images/elnido/nodes_island_height.jpg" alt="shader nodes for island height"/>
-						    </div>
-							<div class="image main">
-								<img src="images/elnido/nodes_wave_height.jpg" alt="shader nodes for wave height"/>
-						    </div>
-							<p class="portfolio_item_main_text">The island height map (top left) is based on a warped Voronoi texture. The higher elevation parts of the islands have vegetation, activated by the generated mask shown bottom left.</p>
-							<p class="portfolio_item_main_text">The wave texture (top right) is a mixture of several sine waves. The unidirectional waves farther from the islands take in a warped x-coordinate as the input to the sine function, while the waves closer to shore use the island height texture to estimate the "depth" of the water as the input to sine. As seen in my demo, the phase of the waves can be animated to create the appearance of wave crashing ashore!</p>
+
+							<p class="portfolio_item_main_text">The island height map and vegetation masks are based on a warped Voronoi texture. The water material mixes together unidirectional deep water waves with shallow-water waves that use the water's depth as input to the sine function. As seen in my demo, the phase of the waves can be animated to create the appearance of wave crashing ashore!</p>
+							<p class="portfolio_item_main_text">I used another Voronoi texture to create the cell-like pattern of inverted bumps for the sand material. This high-frequency bump texture powers the normals of the surface rather than vertex displacement. The palm trees were acquired from <a href="https://blendermarket.com/products/tropical-palm-trees">Blender Market</a> and scattered on the beaches using geometry nodes, and I created the clouds using 4D Perlin noise and principled volume shaders.</p>
 
 							<div class="image row">
 							    <div class="image column halves">
@@ -99,17 +106,6 @@
 							<div class="image main">
 								<img src="images/elnido/nodes_sand_shader.jpg" alt="shader nodes for sand BSDF"/>
 						    </div>
-							<p class="portfolio_item_main_text">Here's some renders closer up to the beach that show off my sand material. I used a Voronoi texture to create the cell-like pattern of inverted bumps. This high-frequency bump texture powers the normals of the surface rather than vertex displacement. Additionally, the sand appears darker and wetter as it descends toward the water. Similar node networks were used for the bump, color, roughness, and specularity of the four other materials in my shader.</p>
-							<p class="portfolio_item_main_text">The palm trees were acquired from <a href="https://blendermarket.com/products/tropical-palm-trees">Blender Market</a> and scattered on the beaches using geometry nodes. I created the clouds using 4D Perlin noise, gradients, and principled volume shaders, roughly following <a href="https://youtu.be/AUMnb0UYE5g">this tutorial by CGMatter</a>.</p>
-
-							<div class="image row">
-							    <div class="image column halves">
-								    <img src="images/elnido/island1.jpg" alt="beach close up"/>
-								</div>
-							    <div class="image column halves">
-							        <img src="images/elnido/full_shader_with_palms.jpg" alt="beach with fog"/>
-							    </div>
-							</div>
 
 							<div class="page_nav">
 								<div class="page_prev">
